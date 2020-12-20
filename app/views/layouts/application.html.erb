@@ -19,8 +19,23 @@
         <a class="p-2 text-white" href="#">Enterprise</a>
         <a class="p-2 text-white" href="#">Support</a>
         <a class="p-2 text-white" href="#">Pricing</a>
+      <% if user_signed_in? %>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Roger
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
+          </ul>
+        </li>
+      <% else %>
+        <a><%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-primary' %></a>
+        <a><%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-primary' %></a>
+      <% end %>
       </nav>
-      <a class="btn btn-outline-primary" href="#">Sign up</a>
     </header>
 
     <p class="notice"><%= notice %></p>

@@ -10,5 +10,5 @@ up:
 down:
 	docker-compose down
 
-run:
-	docker exec --it selfnotes_web_1 bash
+bash:
+	docker exec -it selfnotes_web_1 bash

@@ -4,7 +4,7 @@ build:
 rebuild:
 	docker build . --no-cache
 
-up:
+run:
 	docker-compose up web
 
 down:

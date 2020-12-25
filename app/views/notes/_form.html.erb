@@ -1,0 +1,33 @@
+<%= form_with(model: note, local: true) do |form| %>
+  <% if note.errors.any? %>
+    <div id="error_explanation">
+      <div class="alert alert-danger" role="alert">
+        <p><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</p>
+        <ul>
+          <% note.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= form.label :title %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :body %>
+    <%= form.text_area :body, class: "form-control"  %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label :important %>
+    <%= form.check_box :important, class: "form-check-input" %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Create", class: "btn btn-primary" %>
+  </div>
+<% end %>

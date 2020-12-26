@@ -1,24 +1,23 @@
-<div class="container">
+<% if user_signed_in? %>
   <%= link_to 'New Note', new_note_path, class: "btn btn-primary" %>
   <hr>
-  <% if @notes %>
-    <h1>Notes</h1>
-    <div class="row">
-      <% @notes.each do |note| %>
-        <div class="col-sm-4">
-            <div class="card">
-              <h5 class="card-header">Notificações</h5>
-              <div class="card-body">
-                <h5 class="card-title"><%= note.title %></h5>
-                <p class="card-text"><%= note.body %></p>
-                <a><%= link_to 'Edit', edit_note_path(note), class: 'btn btn-primary' %></a>
-                <a><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></a>
-              </div>
+
+  <h1>Notes</h1>
+  <div class="row">
+    <% @notes.each do |note| %>
+      <div class="col-sm-4">
+          <div class="card">
+            <h5 class="card-header">Notificações</h5>
+            <div class="card-body">
+              <h5 class="card-title"><%= note.title %></h5>
+              <p class="card-text"><%= note.body %></p>
+              <a><%= link_to 'Edit', edit_note_path(note), class: 'btn btn-primary' %></a>
+              <a><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></a>
             </div>
-        </div>
-      <% end %>
-    </div>
-  <% else %>
-    Welcome ;)
-  <% end %>
-</div>
+          </div>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  Welcome ;)
+<% end %>

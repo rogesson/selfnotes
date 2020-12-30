@@ -15,38 +15,52 @@
     <header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-dark border-bottom shadow-sm">
       <p class="h5 my-0 me-md-auto fw-normal text-white">Self#Notes</p>
       <nav class="my-2 my-md-0 me-md-3">
-      <% if user_signed_in? %>
-        <a class="p-2 text-white" href="/">Notes</a>
-        <a class=" dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-          <%= @user_name %>
-        </a>
-        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <li><a class="dropdown-item" href="#">Action</a></li>
-          <li><a class="dropdown-item" href="#">Another action</a></li>
-          <li><hr class="dropdown-divider"></li>
-          <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
-        </ul>
-      <% else %>
-        <a><%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-primary' %></a>
-        <a><%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-primary' %></a>
-      <% end %>
+        <% if user_signed_in? %>
+          <a class="p-2 text-white" href="/">Notes</a>
+          <a class=" dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%= @user_name %>
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <%= link_to('Logout', destroy_user_session_path, method: :delete, class: 'dropdown-item') %>
+          </ul>
+        <% else %>
+          <a><%= link_to 'Log in', new_user_session_path, class: 'btn btn-outline-primary' %></a>
+          <a><%= link_to 'Register', new_user_registration_path, class: 'btn btn-outline-primary' %></a>
+        <% end %>
       </nav>
     </header>
 
-    <div class="container">
-      <% if notice %>
-        <div class="alert alert-success" role="alert">
-          <%= notice %>
+    <div class="d-flex" id="wrapper">
+      <% if @categories %>
+        <div class="-light border-right" id="sidebar-wrapper">
+          <div class="list-group list-group-flush">
+            <a href="#" class="list-group-item list-group-item-action"><strong>Categories</strong></a>
+            <a href="<%= new_category_url %>" class="list-group-item list-group-item-action">+ New Categories</a>
+            <% @categories.each do |category| %>
+              <a href="#" class="list-group-item list-group-item-action"><%= category.title %></a>
+            <% end %>
+          </div>
         </div>
       <% end %>
 
-      <% if alert %>
-        <div class="alert alert-danger" role="alert">
-          <%= alert %>
-        </div>
-      <% end %>
+      <div class="container">
+        <% if notice %>
+          <div class="alert alert-success" role="alert">
+            <%= notice %>
+          </div>
+        <% end %>
 
-      <%= yield %>
-    </div>
-  </body>
+        <% if alert %>
+          <div class="alert alert-danger" role="alert">
+            <%= alert %>
+          </div>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </body>
+  </div>
 </html>

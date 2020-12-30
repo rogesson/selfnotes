@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :categories
   resources :notes
   root to: 'home#index'
   get 'users/index'

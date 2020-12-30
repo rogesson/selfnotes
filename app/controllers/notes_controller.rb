@@ -15,10 +15,12 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @categories = Category.all
   end
 
   # GET /notes/1/edit
   def edit
+    @categories = Category.all
   end
 
   # POST /notes
@@ -69,7 +71,7 @@ class NotesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def note_params
-      params.require(:note).permit(:title, :body, :important, :user_id)
+      params.require(:note).permit(:title, :body, :important, :user_id, :category_id)
         .merge(user_id: current_user.id)
     end
 end

@@ -40,7 +40,7 @@
             <a href="#" class="list-group-item list-group-item-action"><strong>Categories</strong></a>
             <a href="<%= new_category_url %>" class="list-group-item list-group-item-action">+ New Categories</a>
             <% @categories.each do |category| %>
-              <a href="#" class="list-group-item list-group-item-action"><%= category.title %></a>
+              <a href="<%= category_path(category) %>" class="list-group-item list-group-item-action"><%= category.title %></a>
             <% end %>
           </div>
         </div>

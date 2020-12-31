@@ -1,9 +1,23 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Title:</strong>
-  <%= @category.title %>
+<p class="shadow-none p-3 mb-5 bg-light rounded">
+  <strong><%= @category.title %></strong>
+  <%= link_to 'New Note', new_note_path, class: "btn btn-success" %>
+  <%= link_to 'Edit Category', edit_category_path(@category), class: "btn btn-primary" %>
+  <%= link_to 'Destroy Category', @category, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %>
 </p>
 
-<%= link_to 'Edit', edit_category_path(@category) %> |
-<%= link_to 'Back', categories_path %>
+<h1>Notes</h1>
+<div class="row">
+  <% @notes.each do |note| %>
+    <div class="col-sm-4">
+        <div class="card">
+          <h5 class="card-header"><%= note.category.title %></h5>
+          <div class="card-body">
+            <h5 class="card-title"><%= note.title %></h5>
+            <p class="card-text"><%= note.body %></p>
+            <a><%= link_to 'Edit', edit_note_path(note), class: 'btn btn-primary' %></a>
+            <a><%= link_to 'Destroy', note, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></a>
+          </div>
+        </div>
+    </div>
+  <% end %>
+</div>

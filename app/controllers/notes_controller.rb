@@ -15,11 +15,13 @@ class NotesController < ApplicationController
   # GET /notes/new
   def new
     @note = Note.new
+    @category = Category.find_by_id(params[:category_id])
     @categories = Category.all
   end
 
   # GET /notes/1/edit
   def edit
+
     @categories = Category.all
   end
 
@@ -30,7 +32,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to home_index_url, notice: 'Note was successfully created.' }
+        format.html { redirect_to category_path(@note.category), notice: 'Note was successfully created.' }
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new }
@@ -44,7 +46,7 @@ class NotesController < ApplicationController
   def update
     respond_to do |format|
       if @note.update(note_params)
-        format.html { redirect_to home_index_url, notice: 'Note was successfully updated.' }
+        format.html { redirect_to category_path(@note.category), notice: 'Note was successfully updated.' }
         format.json { render :show, status: :ok, location: @note }
       else
         format.html { render :edit }
@@ -58,7 +60,7 @@ class NotesController < ApplicationController
   def destroy
     @note.destroy
     respond_to do |format|
-      format.html { redirect_to home_index_url, notice: 'Note was successfully destroyed.' }
+      format.html { redirect_to category_path(@note.category), notice: 'Note was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
@@ -67,6 +69,7 @@ class NotesController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_note
       @note = Note.find(params[:id])
+      @category = Category.find(params[:category_id])
     end
 
     # Only allow a list of trusted parameters through.

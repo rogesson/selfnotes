@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
-  resources :categories
-  resources :notes
+  resources :categories do
+    resources :notes
+  end
+
+
+  #resources :notes
   root to: 'home#index'
   get 'users/index'
 

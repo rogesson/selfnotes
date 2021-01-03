@@ -36,6 +36,15 @@
     <%= form.check_box :important, class: "form-check-input" %>
   </div>
 
+  <div class="form-group">
+    <%= form.label :priority %>
+    <%= form.select :priority,
+        Note::priorities_for_select,
+        { include_blank: 'Select priority...' },
+        { class: 'form-select' }
+     %>
+  </div>
+
   <div class="actions">
     <%= form.submit "save", class: "btn btn-primary" %>
   </div>

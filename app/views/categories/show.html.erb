@@ -9,15 +9,7 @@
 <div class="row">
   <% @notes.each do |note| %>
     <div class="col-sm-4">
-        <div class="card">
-          <h5 class="card-header"><%= note.category.title %></h5>
-          <div class="card-body">
-            <h5 class="card-title"><%= note.title %></h5>
-            <p class="card-text"><%= note.body %></p>
-            <a><%= link_to 'Edit', edit_category_note_path(@category, note), class: 'btn btn-primary' %></a>
-            <a><%= link_to 'Destroy', category_note_path(@category, note), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %></a>
-          </div>
-        </div>
+      <%= render partial: 'notes/note_card', locals: { note: note } %>
     </div>
   <% end %>
 </div>

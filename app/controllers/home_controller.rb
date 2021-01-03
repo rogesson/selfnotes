@@ -6,7 +6,6 @@ class HomeController < ApplicationController
         .reverse
         .group_by { |note| note.priority }
 
-      puts @notes.inspect
       @categories = Category.all
     end
   end

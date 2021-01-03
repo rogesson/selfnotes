@@ -1,17 +1,53 @@
 <% if user_signed_in? %>
   <h1>Notes</h1>
-  <div class="row">
-    <% @notes.each do |note| %>
-      <div class="col-sm-4">
-          <div class="card">
-            <h5 class="card-header"><%= note.category.title %></h5>
-            <div class="card-body">
-              <h5 class="card-title"><%= note.title %></h5>
-              <p class="card-text"><%= note.body %></p>
+  <div class="accordion" id="accordionExample">
+    <div class="accordion-item">
+      <h2 class="accordion-header" id="headingOne">
+        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+          Priority #1
+        </button>
+      </h2>
+      <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="row">
+          <% @notes[1].each do |note| %>
+            <div class="col-sm-4">
+                <div class="card">
+                  <h5 class="card-header"><%= note.category.title %></h5>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= note.title %></h5>
+                    <p class="card-text"><%= note.body %></p>
+                  </div>
+                </div>
             </div>
-          </div>
+          <% end %>
+        </div>
       </div>
-    <% end %>
+    </div>
+    <div class="accordion-item">
+    <h2 class="accordion-header" id="headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+        Priority #2
+      </button>
+    </h2>
+    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+      <div class="accordion-body">
+        <div class="row">
+          <% @notes.fetch(2, []).each do |note| %>
+            <div class="col-sm-4">
+                <div class="card">
+                  <h5 class="card-header"><%= note.category.title %></h5>
+                  <div class="card-body">
+                    <h5 class="card-title"><%= note.title %></h5>
+                    <p class="card-text"><%= note.body %></p>
+                  </div>
+                </div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
   </div>
 <% else %>
   <h1>Self#Notes</h1>
@@ -20,6 +56,10 @@
       <p class="lead">create notes and remind to organize your day.</p>
       <p class="lead">Separate notes by topic and priorities so everything is easy to find when you need it most.</p>
       <p class="lead">Set alerts to be reminded of your priorities, such as paying bills, appointments and several important dates on your agenda.</p>
+    </div>
+  </div>
+      </div>
+    </div>
     </div>
   </div>
 <% end %>

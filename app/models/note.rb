@@ -4,7 +4,6 @@ class Note < ApplicationRecord
 
   PRIORITIES = [1, 2, 3]
 
-  #scope :priority, -> { where(important: true) }
   scope :priority, -> { where.not(priority: nil).order(:priority) }
 
   def self.priorities_for_select

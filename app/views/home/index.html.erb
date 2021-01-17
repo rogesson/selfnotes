@@ -29,13 +29,7 @@
         <div class="row">
           <% @notes.fetch(2, []).each do |note| %>
             <div class="col-sm-4">
-                <div class="card">
-                  <h5 class="card-header"><%= note.category.title %></h5>
-                  <div class="card-body">
-                    <h5 class="card-title"><%= note.title %></h5>
-                    <p class="card-text"><%= note.body %></p>
-                  </div>
-                </div>
+              <%= render partial: 'notes/note_card', locals: { note: note } %>
             </div>
           <% end %>
         </div>

@@ -2,13 +2,22 @@ build:
 	docker build .
 
 rebuild:
-	docker build . --no-cache
+	docker-compose build --no-cache
 
-run:
-	docker-compose up web
+up:
+	docker-compose up -d web
 
 down:
 	docker-compose down
 
-bash:
+run_bash:
 	docker exec -it selfnotes_web_1 bash
+
+rspec:
+	docker exec -it selfnotes_web_1 bundle exec rspec spec
+
+setup:
+	 rake db:create
+	 rake db:migrate 
+	 rake db:seed
+

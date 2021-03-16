@@ -1,10 +1,10 @@
 FROM ruby:2.5
+ARG RAILS_ROOT=/selfnotes/
 RUN apt-get update -qq && apt-get install -y nodejs postgresql-client
-WORKDIR /selfnotes
-COPY Gemfile /selfnotes/Gemfile
-COPY Gemfile.lock /selfnotes/Gemfile.lock
+WORKDIR $RAILS_ROOT
+COPY Gemfile* $RAILS_ROOT
 RUN bundle install
-COPY . /selfnotes
+COPY . $RAILS_ROOT
 
 # Add a script to be executed every time the container starts.
 COPY entrypoint.sh /usr/bin/
@@ -13,5 +13,5 @@ ENTRYPOINT ["entrypoint.sh"]
 EXPOSE 3000
 
 # Start the main process.
-CMD ["rails", "server", "-b", "0.0.0.0"]
+CMD ["bin/rails", "server", "-b", "0.0.0.0"]
 
